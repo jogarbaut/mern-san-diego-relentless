@@ -10,6 +10,12 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 // Components
 import GamelogList from "../components/GamelogList";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Divider from "../components/Divider";
 
 const Rosters = () => {
   // Context
@@ -42,7 +48,7 @@ const Rosters = () => {
     axios
       .get(`http://localhost:8000/api/${selectedTeam}`)
       .then((res) => {
-        setAthlete("");
+        // setAthlete("");
         setSelectedTeamRoster(res.data);
       })
       .catch((err) => console.log(err));
@@ -62,54 +68,83 @@ const Rosters = () => {
   }, [athleteId, dispatch, athletes]);
 
   return (
-    <div>
-      <div className="container text-center">
-        <div className="row">
-          <div className="col">
-            <h1>Rosters</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <AthleteForm />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <select
-              type="text"
-              onChange={(e) => setSelectedTeam(e.target.value)}
-              value={selectedTeam}
-            >
-              <option value="14U">14U</option>
-              <option value="15U">15U</option>
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
+    <>
+      <Row>
+        <div className="page-title">Rosters</div>
+      </Row>
+      <Container className="btn-group-container">
+        <Row>
+          <ButtonGroup className="btn-group" size="sm">
+            <Button className="team-btn" onClick={() => setSelectedTeam("7U")}>
+              7U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("8U")}>
+              8U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("9U")}>
+              9U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("10U")}>
+              10U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("11U")}>
+              11U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("12U")}>
+              12U
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup className="btn-group" size="sm">
+            <Button className="team-btn" onClick={() => setSelectedTeam("13U")}>
+              13U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("14U")}>
+              14U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("15U")}>
+              15U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("16U")}>
+              16U
+            </Button>
+            <Button className="team-btn" onClick={() => setSelectedTeam("17U")}>
+              17U
+            </Button>
+            {user ? (
+              <>
+                {" "}
+                <AthleteForm />
+              </>
+            ) : (
+              <></>
+            )}
+          </ButtonGroup>
+        </Row>
+      </Container>
+      <Divider />
+      <Container>
+        <Row>
+          <Col lg={3}>
             <AthleteList
               selectedTeam={selectedTeam}
               selectedTeamRoster={selectedTeamRoster}
               setAthleteId={setAthleteId}
               setEditAthleteModalToggle={setEditAthleteModalToggle}
             />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            {athlete ? (
-              <AthleteDetail
-                athlete={athlete}
-                gamelog={gamelog}
-                setGamelog={setGamelog}
-              />
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="row">
-            <div className="col">
+          </Col>
+          <Col lg={9}>
+            <Row>
+              {athlete ? (
+                <AthleteDetail
+                  athlete={athlete}
+                  gamelog={gamelog}
+                  setGamelog={setGamelog}
+                />
+              ) : (
+                <></>
+              )}
+            </Row>
+            <Row>
               {athlete ? (
                 <GamelogList
                   athleteId={athleteId}
@@ -119,11 +154,11 @@ const Rosters = () => {
               ) : (
                 <></>
               )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

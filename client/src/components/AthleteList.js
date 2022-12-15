@@ -6,6 +6,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
+import ListGroup from "react-bootstrap/ListGroup";
+
 import AthleteUpdateForm from "./AthleteUpdateForm";
 
 const AthleteList = ({ selectedTeam, selectedTeamRoster, setAthleteId }) => {
@@ -25,49 +28,44 @@ const AthleteList = ({ selectedTeam, selectedTeamRoster, setAthleteId }) => {
 
   return (
     <>
-      <div className="athlete-list-title">{selectedTeam}</div>
-      <Table hover className="athlete-list">
-        <thead>
-          <tr>
-            <td>Athlete Name</td>
-            <td>Jersey Number</td>
-            <td>Actions</td>
-          </tr>
-        </thead>
-        <tbody>
-          {selectedTeamRoster.map((athlete, index) => {
-            return (
-              <tr key={athlete._id}>
-                <td>
-                  {athlete.firstName} {athlete.lastName}
-                </td>
-                <td>#{athlete.jerseyNumber}</td>
-                <td>
-                  <Button
-                    onClick={() => setAthleteId(athlete._id)}
-                    variant="secondary"
+      <ListGroup>
+        <ListGroup.Item className="athlete-list-title">
+          Team {selectedTeam}
+        </ListGroup.Item>
+        {selectedTeamRoster.map((athlete, index) => {
+          return (
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between align-items-start"
+              key={athlete._id}
+            >
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">{athlete.firstName}</div>
+                {athlete.lastName}
+              </div>
+              <span
+                className="material-symbols-outlined athlete-list-btn"
+                onClick={() => setAthleteId(athlete._id)}
+              >
+                scoreboard
+              </span>
+              {user ? (
+                <>
+                  <AthleteUpdateForm athlete={athlete} />
+                  <span
+                    className="material-symbols-outlined athlete-list-btn"
+                    onClick={() => deleteAthlete(athlete._id)}
                   >
-                    Profile
-                  </Button>
-                  {user ? (
-                    <>
-                      <AthleteUpdateForm athlete={athlete} />
-                      <Button
-                        onClick={() => deleteAthlete(athlete._id)}
-                        variant="danger"
-                      >
-                        Delete
-                      </Button>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+                    delete
+                  </span>
+                </>
+              ) : (
+                <></>
+              )}
+            </ListGroup.Item>
+          );
+        })}
+      </ListGroup>
     </>
   );
 };

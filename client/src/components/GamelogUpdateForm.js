@@ -5,7 +5,7 @@ import { useAthleteContext } from "../hooks/useAthleteContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 import axios from "axios";
-import moment from 'moment';
+import moment from "moment";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -31,16 +31,26 @@ const GamelogUpdateForm = ({ athleteId, game }) => {
   const [opponentScore, setOpponentScore] = useState(game.opponentScore);
   const [points, setPoints] = useState(game.points);
   const [fieldGoalsMade, setFieldGoalsMade] = useState(game.fieldGoalsMade);
-  const [fieldGoalsAttempted, setFieldGoalsAttempted] = useState(game.fieldGoalsAttempted);
-  const [fieldGoalsPercentage, setFieldGoalsPercentage] = useState(game.fieldGoalsPercentage);
-  const [threePointFieldGoalsMade, setThreePointFieldGoalsMade] = useState(game.threePointFieldGoalsMade);
+  const [fieldGoalsAttempted, setFieldGoalsAttempted] = useState(
+    game.fieldGoalsAttempted
+  );
+  const [fieldGoalsPercentage, setFieldGoalsPercentage] = useState(
+    game.fieldGoalsPercentage
+  );
+  const [threePointFieldGoalsMade, setThreePointFieldGoalsMade] = useState(
+    game.threePointFieldGoalsMade
+  );
   const [threePointFieldGoalsAttempted, setThreePointFieldGoalsAttempted] =
     useState(game.threePointFieldGoalsAttempted);
   const [threePointFieldGoalsPercentage, setThreePointFieldGoalsPercentage] =
     useState(game.threePointFieldGoalsPercentage);
   const [freethrowsMade, setFreethrowsMade] = useState(game.freethrowsMade);
-  const [freethrowsAttempted, setFreethrowsAttempted] = useState(game.freethrowsAttempted);
-  const [freethrowsPercentage, setFreethrowsPercentage] = useState(game.freethrowsPercentage);
+  const [freethrowsAttempted, setFreethrowsAttempted] = useState(
+    game.freethrowsAttempted
+  );
+  const [freethrowsPercentage, setFreethrowsPercentage] = useState(
+    game.freethrowsPercentage
+  );
   const [rebounds, setRebounds] = useState(game.rebounds);
   const [assists, setAssists] = useState(game.assists);
   const [blocks, setBlocks] = useState(game.blocks);
@@ -148,9 +158,12 @@ const GamelogUpdateForm = ({ athleteId, game }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setShow(true)}>
-        Edit
-      </Button>
+      <span
+        className="material-symbols-outlined delete"
+        onClick={() => setShow(true)}
+      >
+        edit_note
+      </span>
 
       <Modal
         size="xl"

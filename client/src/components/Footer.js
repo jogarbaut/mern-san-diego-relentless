@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <Container fluid className="footer">
         <Row>
-          <Col>© 2022 Copyright: San Diego Relentless | Beta Website by Jomel Bautista</Col>
+          <Col>Demo Website by Jomel Bautista</Col>
         </Row>
       </Container>
     </>

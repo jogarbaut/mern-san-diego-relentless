@@ -65,9 +65,12 @@ const AthleteUpdateForm = ({ athlete }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Edit Athlete
-      </Button>
+      <span
+        className="material-symbols-outlined athlete-list-btn"
+        onClick={handleShow}
+      >
+        edit_note
+      </span>
 
       <Modal
         show={show}
@@ -80,42 +83,36 @@ const AthleteUpdateForm = ({ athlete }) => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={onSubmitHandler}>
-            <Row>
-              <div className="athlete-form-title">Edit Athlete Details</div>
-            </Row>
             <Row className="justify-content-center align-items-center g-3 row-cols-2 row-cols-lg-5">
-              <Col>
+
                 <Form.Control
                   type="text"
                   placeholder="Enter First Name"
                   onChange={(e) => setFirstName(e.target.value)}
                   value={firstName}
                 />
-              </Col>
-              <Col>
+
                 <Form.Control
                   type="text"
                   placeholder="Enter Last Name"
                   onChange={(e) => setLastName(e.target.value)}
                   value={lastName}
                 />
-              </Col>
-              <Col>
+
                 <Form.Control
                   type="number"
                   placeholder="Enter Jersey Number"
                   onChange={(e) => setJerseyNumber(e.target.value)}
                   value={jerseyNumber}
                 />
-              </Col>
-              <Col>
+
                 <Form.Control
                   type="text"
                   placeholder="Enter Team Name"
                   onChange={(e) => setTeam(e.target.value)}
                   value={team}
                 />
-              </Col>
+
               <Col lg="auto">
                 <Button variant="success" type="submit">
                   Save Edits

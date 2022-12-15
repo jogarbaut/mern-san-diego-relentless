@@ -33,6 +33,13 @@ const AthleteForm = () => {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
 
+  const clearForm = () => {
+    setFirstName("")
+    setLastName("")
+    setJerseyNumber("")
+    setTeam("")
+  }
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -53,15 +60,15 @@ const AthleteForm = () => {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((res) => {
-        console.log(res.data);
         dispatch({ type: "CREATE_ATHLETE", payload: res.data });
+        clearForm()
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="new-athlete-btn" variant="primary" onClick={handleShow}>
         New Athlete
       </Button>
 
@@ -76,44 +83,39 @@ const AthleteForm = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={onSubmitHandler}>
-            <Row>
-              <div className="athlete-form-title">
-                Add an Athlete to Start Tracking Stats
-              </div>
-            </Row>
             <Row className="justify-content-center align-items-center g-3 row-cols-2 row-cols-lg-5">
-              <Col>
+
                 <Form.Control
                   type="text"
                   placeholder="Enter First Name"
                   onChange={(e) => setFirstName(e.target.value)}
                   value={firstName}
                 />
-              </Col>
-              <Col>
+
+
                 <Form.Control
                   type="text"
                   placeholder="Enter Last Name"
                   onChange={(e) => setLastName(e.target.value)}
                   value={lastName}
                 />
-              </Col>
-              <Col>
+
+
                 <Form.Control
                   type="number"
                   placeholder="Enter Jersey Number"
                   onChange={(e) => setJerseyNumber(e.target.value)}
                   value={jerseyNumber}
                 />
-              </Col>
-              <Col>
+
+
                 <Form.Control
                   type="text"
                   placeholder="Enter Team Name"
                   onChange={(e) => setTeam(e.target.value)}
                   value={team}
                 />
-              </Col>
+
               <Col lg="auto">
                 <Button variant="success" type="submit">
                   Add Athlete

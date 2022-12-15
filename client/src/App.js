@@ -22,9 +22,10 @@ function App() {
         <CustomNavbar />
         <div className="pages">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/rosters" element={<Rosters />} />
+            <Route path="/" element={<Rosters />} />
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
