@@ -5,15 +5,16 @@ import Table from "react-bootstrap/Table";
 
 import { useAthleteContext } from "../hooks/useAthleteContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import GamelogUpdateForm from "./GamelogUpdateForm";
 
 const GamelogList = ({ athleteId, gamelog, setGamelog }) => {
   // Context
   const { user } = useAuthContext();
   const { dispatch } = useAthleteContext();
 
-  const removeFromDom = (gameId) => {
-    setGamelog(gamelog.filter((game) => game._id !== gameId));
-  };
+  // const removeFromDom = (gameId) => {
+  //   setGamelog(gamelog.filter((game) => game._id !== gameId));
+  // };
 
   const handleDeleteClick = async (gameId) => {
     if (!user) {
@@ -27,7 +28,7 @@ const GamelogList = ({ athleteId, gamelog, setGamelog }) => {
         { headers: { Authorization: `Bearer ${user.token}` } }
       )
       .then((res) => {
-        removeFromDom(gameId);
+        // removeFromDom(gameId);
         dispatch({ type: "UPDATE_ATHLETE", payload: res.data });
       })
       .catch((err) => console.log(err));
@@ -93,6 +94,7 @@ const GamelogList = ({ athleteId, gamelog, setGamelog }) => {
                     <span onClick={() => handleDeleteClick(game._id)}>
                       Delete
                     </span>
+                    <GamelogUpdateForm athleteId={athleteId} game={game} />
                   </td>
                 </tr>
               );

@@ -9,7 +9,7 @@ const ProgramCardLeft = (props) => {
       <Container className="program-card">
         <Row>
           <Col sm={4}>
-            <img fluid src={image} alt={imageAlt} />
+            <img src={image} alt={imageAlt} />
           </Col>
           <Col sm={8}>
             <h2>{title}</h2>

@@ -15,7 +15,7 @@ const ProgramCardRight = (props) => {
             <p>{description}</p>
           </Col>
           <Col sm={4}>
-            <img fluid src={image} alt={imageAlt} />
+            <img src={image} alt={imageAlt} />
           </Col>
         </Row>
       </Container>

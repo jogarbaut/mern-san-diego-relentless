@@ -6,8 +6,22 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import AthleteUpdateForm from "./AthleteUpdateForm";
 
-const AthleteList = ({ selectedTeam, selectedTeamRoster, setAthleteId, prevFirstName, prevLastName, prevTeam, prevJerseyNumber, athleteId }) => {
+const AthleteList = ({ selectedTeam, selectedTeamRoster, setAthleteId }) => {
+  const { user } = useAuthContext();
+  const { dispatch } = useAthleteContext();
+
+  const deleteAthlete = (athleteId) => {
+    axios
+      .delete(`http://localhost:8000/api/athlete/${athleteId}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      })
+      .then((res) => {
+        dispatch({ type: "DELETE_ATHLETE", payload: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -29,9 +43,25 @@ const AthleteList = ({ selectedTeam, selectedTeamRoster, setAthleteId, prevFirst
                 </td>
                 <td>#{athlete.jerseyNumber}</td>
                 <td>
-                  <Button onClick={() => setAthleteId(athlete._id)} variant="link">
-                    View
+                  <Button
+                    onClick={() => setAthleteId(athlete._id)}
+                    variant="secondary"
+                  >
+                    Profile
                   </Button>
+                  {user ? (
+                    <>
+                      <AthleteUpdateForm athlete={athlete} />
+                      <Button
+                        onClick={() => deleteAthlete(athlete._id)}
+                        variant="danger"
+                      >
+                        Delete
+                      </Button>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </td>
               </tr>
             );
