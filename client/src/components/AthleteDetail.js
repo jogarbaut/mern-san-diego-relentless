@@ -153,33 +153,20 @@ const AthleteDetail = ({ athlete }) => {
 
   return (
     <>
-      {/* <Container className="athlete-detail-banner d-flex justify-content-center align-items-center">
-        <div className="me-auto">
-          <div className="fw-bold">{athlete.firstName}</div>
-          {athlete.lastName}
-        </div>
-        <div className="me-auto">
-          <h4>
-            {athlete.firstName} {athlete.lastName}
-          </h4>
-          <h4>#{athlete.jerseyNumber}</h4>
-        </div>
-      </Container> */}
-
       <Container>
-        <Row>
+        <Row className="align-items-center">
           <Col lg="auto" className="athlete-detail-banner">
             <Row>
-{athlete.firstName} {athlete.lastName}'s
-            Game Log
+              {athlete.firstName} {athlete.lastName}'s Game Log
             </Row>
             <Row>
-            <small>#{athlete.jerseyNumber}<span> &#183; </span>Team {athlete.team}</small>
+              <small>
+                #{athlete.jerseyNumber}
+                <span> &#183; </span>Team {athlete.team}
+              </small>
             </Row>
-
-
-            </Col>
-            <Col>
+          </Col>
+          <Col>
             {user ? (
               <>
                 {/* Gamelog Modal */}
@@ -484,7 +471,7 @@ const AthleteDetail = ({ athlete }) => {
             ) : (
               <></>
             )}
-            </Col>
+          </Col>
         </Row>
         {athlete.gamelog.length === 0 ? (
           <>Athlete does not have any game data available at this time.</>

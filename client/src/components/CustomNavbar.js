@@ -54,11 +54,11 @@ const CustomNavbar = () => {
                   Demo Login
                 </Button>
               </Nav.Link>
-              <Nav.Link href="/signup">
+              {/* <Nav.Link href="/signup">
                 <Button className="signup-btn" variant="light">
                   Sign Up
                 </Button>
-              </Nav.Link>
+              </Nav.Link> */}
               </Navbar.Collapse>
             </>
           )}

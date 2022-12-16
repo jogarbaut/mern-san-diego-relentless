@@ -57,8 +57,8 @@ const AthleteUpdateForm = ({ athlete }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         dispatch({ type: "UPDATE_ATHLETE", payload: res.data });
+        handleClose()
       })
       .catch((err) => console.log(err));
   };

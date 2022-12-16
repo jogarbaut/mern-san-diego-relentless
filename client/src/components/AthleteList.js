@@ -36,12 +36,12 @@ const AthleteList = ({ selectedTeam, selectedTeamRoster, setAthleteId }) => {
           return (
             <ListGroup.Item
               as="li"
-              className="d-flex justify-content-between align-items-start"
+              className="d-flex justify-content-between align-items-center"
               key={athlete._id}
             >
               <div className="ms-2 me-auto">
-                <div className="fw-bold">{athlete.firstName}</div>
-                {athlete.lastName}
+                <div className="fw-bold">#{athlete.jerseyNumber}</div>
+                <div>{athlete.firstName} {athlete.lastName}</div>
               </div>
               <span
                 className="material-symbols-outlined athlete-list-btn"

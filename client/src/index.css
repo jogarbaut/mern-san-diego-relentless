@@ -40,6 +40,10 @@ body {
   border-color: var(--primary-gold);
 }
 
+.custom-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgb(199, 179, 88)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+
 .custom-navbar .container .custom-navbar-nav .navbar-nav a {
   color: var(--light-white);
 }
@@ -121,6 +125,18 @@ body {
   color: var(--light-white);
 }
 
+.btn.team-btn-active {
+  background-color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  color: var(--light-white);
+}
+
+.btn.team-btn-active:hover {
+  background-color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  color: var(--light-white);
+}
+
 /* Athlete List */
 /* .list-group {
   border: 1px solid var(--primary-blue);
@@ -132,8 +148,14 @@ body {
 }
 
 .list-group .athlete-list-title {
-  font-size: 1.25rem;
-  background-color: var(--primary-gold);
+  font-size: 2rem;
+  background-color: var(--primary-blue);
+  color: var(--light-white);
+}
+
+.list-group .jersey-number {
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 .btn.athlete-list-gamelog-btn {

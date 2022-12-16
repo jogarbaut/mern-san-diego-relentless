@@ -99,6 +99,7 @@ const GamelogUpdateForm = ({ athleteId, game }) => {
       )
       .then((res) => {
         dispatch({ type: "UPDATE_ATHLETE", payload: res.data });
+        handleClose()
       })
       .catch((err) => console.log(err));
   };
